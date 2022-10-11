@@ -26,95 +26,66 @@ const alfabetLower = [
   "y",
   "z",
 ];
-function clean() {
-  document.getElementById("plaintext").value = "";
-  document.getElementById("ciphertext").value = "";
-}
+
 function encode() {
+  document.getElementById("ciphertext").value = "";
   document.getElementById("container").style.flexDirection = "row";
-  let plainMessage = document.getElementById("plaintext").value;
-  console.log(plainMessage);
+  let message = document.getElementById("plaintext").value;
+  let plainMessage = message.toLowerCase();
   for (let i = 0; i < plainMessage.length; i += 1) {
     let newLetter;
     let plainLetter = plainMessage[i];
-    console.log(plainLetter);
-    let index = alfabetLower.findIndex((b) => b == plainLetter);
-    console.log(index);
-    let userKey = document.getElementById("key").value;
-    let newIndex = index + Number(userKey);
-    if (newIndex >= 26) {
-      let rightIdex = Number(newIndex - 26);
-      let newLetter = alfabetLower[rightIdex];
-      console.log(rightIdex);
-      console.log(newLetter);
+    let letters = /[^a-z]/;
+    if (letters.test(plainLetter)) {
+      let newLetter = plainLetter;
       document.getElementById("ciphertext").value =
         document.getElementById("ciphertext").value + newLetter;
     } else {
-      let rightIdex = newIndex;
-      let newLetter = alfabetLower[rightIdex];
-      console.log(rightIdex);
-      console.log(newLetter);
-      document.getElementById("ciphertext").value =
-        document.getElementById("ciphertext").value + newLetter;
+      let index = alfabetLower.findIndex((b) => b == plainLetter);
+      let userKey = document.getElementById("key").value;
+      let newIndex = index + Number(userKey);
+      if (newIndex >= 26) {
+        let rightIdex = Number(newIndex - 26);
+        let newLetter = alfabetLower[rightIdex];
+        document.getElementById("ciphertext").value =
+          document.getElementById("ciphertext").value + newLetter;
+      } else {
+        let rightIdex = newIndex;
+        let newLetter = alfabetLower[rightIdex];
+        document.getElementById("ciphertext").value =
+          document.getElementById("ciphertext").value + newLetter;
+      }
     }
   }
 }
 function decode() {
+  document.getElementById("plaintext").value = "";
   document.getElementById("container").style.flexDirection = "row-reverse";
-  let cipherMessage = document.getElementById("ciphertext").value;
-  console.log(cipherMessage);
+  let message = document.getElementById("ciphertext").value;
+  let cipherMessage = message.toLowerCase();
   for (let i = 0; i < cipherMessage.length; i += 1) {
     let backLetter;
     let cipherLetter = cipherMessage[i];
-    console.log(cipherLetter);
-    let index = alfabetLower.findIndex((b) => b == cipherLetter);
-    console.log(index);
-    let userKey = document.getElementById("key").value;
-    let backIndex = index - Number(userKey);
-
-    if (backIndex < 0) {
-      let rightIdex = Number(backIndex + 26);
-      let backLetter = alfabetLower[rightIdex];
-      console.log(rightIdex);
-      console.log(backLetter);
+    let letters = /[^a-z]/;
+    if (letters.test(cipherLetter)) {
+      let backLetter = cipherLetter;
       document.getElementById("plaintext").value =
         document.getElementById("plaintext").value + backLetter;
     } else {
-      let rightIdex = backIndex;
-      let backLetter = alfabetLower[rightIdex];
-      console.log(rightIdex);
-      console.log(backLetter);
-      document.getElementById("plaintext").value =
-        document.getElementById("plaintext").value + backLetter;
+      let index = alfabetLower.findIndex((b) => b == cipherLetter);
+      let userKey = document.getElementById("key").value;
+      let backIndex = index - Number(userKey);
+      if (backIndex < 0) {
+        let rightIdex = Number(backIndex + 26);
+        let backLetter = alfabetLower[rightIdex];
+        document.getElementById("plaintext").value =
+          document.getElementById("plaintext").value + backLetter;
+      } else {
+        let rightIdex = backIndex;
+        let backLetter = alfabetLower[rightIdex];
+        document.getElementById("plaintext").value =
+          document.getElementById("plaintext").value + backLetter;
+      }
     }
   }
 }
-
-// let alfabetUpper = [
-//   "A",
-//   "B",
-//   "C",
-//   "D",
-//   "E",
-//   "F",
-//   "G",
-//   "H",
-//   "I",
-//   "J",
-//   "K",
-//   "L",
-//   "M",
-//   "N",
-//   "O",
-//   "P",
-//   "Q",
-//   "R",
-//   "S",
-//   "T",
-//   "U",
-//   "V",
-//   "W",
-//   "X",
-//   "Y",
-//   "Z",
-// ];
