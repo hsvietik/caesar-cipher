@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Caesar cipher</h1>
+    <h2>Encode and decode online</h2>
+    <p>
+      Method in which each letter in the plaintext is replaced by a letter some
+      fixed number of positions down the alphabet. The method is named after
+      Julius Caesar, who used it in his private correspondence.
+    </p>
+    <div class="container" id="container">
+      <div class="plaintext part" id="plaintext-part">
+        <label for="plaintext">Plaintext:</label>
+        <textarea
+          name="plaintext"
+          id="plaintext"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+
+      <div class="conditions part" id="conditions">
+        <form id="key-form">
+          <label for="key">Choose the key number</label>
+          <input
+            type="number"
+            min="1"
+            max="26"
+            name="key"
+            id="key"
+            autocomplete="off"
+          />
+        </form>
+        <ul class="btn-list">
+          <li><button type="button" onclick="encode()">Encode</button></li>
+          <li><button type="button" onclick="decode()">Decode</button></li>
+        </ul>
+      </div>
+      <div class="ciphertext part" id="ciphertext-part">
+        <label for="ciphertext">Ciphertext:</label>
+        <textarea
+          name="ciphertext"
+          id="ciphertext"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+    </div>
+    <script src="./decoder.js"></script>
+  </body>
+</html>
